@@ -1,6 +1,8 @@
 import React, { useEffect, useState} from 'react'
-import CenteredBlock from '../../components/CenteredBlock'
 import axios from 'axios'
+
+import CenteredBlock from '../../components/CenteredBlock'
+import Condtional from '../../components/Conditional'
 
 import {IBGECity, IBGEUf} from '../../models'
 
@@ -60,69 +62,63 @@ const Home = () => {
     }, [uf])
 
     return (
-        <div>
-            <CenteredBlock>
-                <form>
-                    <h1>uf</h1>
+        <CenteredBlock>
+            <form>
+                <h1>uf</h1>
+                <select 
+                    name="uf" 
+                    id="uf" 
+                    autoFocus 
+                    required
+                    onChange={(ev) => setUf(ev.target.value)}
+                >
+                    <option selected key='' value=''>selecione um estado</option>
+                    {ufs.map((cur) => 
+                        <option key={cur.sigla}
+                            value={cur.sigla} 
+                        >{cur.nome}</option>
+                    )}
+                </select>
+                <Condtional cond={isUFDefined}>
+                    <h1>cidade</h1>
                     <select 
-                        name="uf" 
-                        id="uf" 
-                        autoFocus 
+                        name="city" 
+                        id="city" 
                         required
-                        onChange={(ev) => setUf(ev.target.value)}
+                        onChange={(ev) => setLocalidade(Number(ev.target.value))}
                     >
-                        <option selected key='' value=''>selecione um estado</option>
-                        {ufs.map((cur) => 
-                            <option key={cur.sigla}
-                                value={cur.sigla} 
+                        <option selected key={0} value={0}>selecione um município</option>
+                        {cities.map((cur) =>
+                            <option key={cur.id}
+                                value={cur.id}
                             >{cur.nome}</option>
                         )}
                     </select>
-                    {isUFDefined() ? 
-                        <div>
-                            <h1>cidade</h1>
-                            <select 
-                                name="city" 
-                                id="city" 
-                                required
-                                onChange={(ev) => setLocalidade(Number(ev.target.value))}
-                            >
-                                <option selected key={0} value={0}>selecione um município</option>
-                                {cities.map((cur) =>
-                                    <option key={cur.id}
-                                        value={cur.id}
-                                    >{cur.nome}</option>
-                                )}
-                            </select>
-                        </div> : <></>}
-                    {isLocalidadeDefined() ? 
-                        <div>
-                            <h1>período</h1>
-                            <select
-                                name="periodo"
-                                id="periodo"
-                                required
-                                onChange={(ev) => setPeriodo(ev.target.value)}
-                                >
-                                    <option selected key='' value=''>selecione um período</option>
-                                    {periodos.map((cur) =>
-                                        <option key={cur.code}
-                                            value={cur.code}
-                                        >{cur.name}</option>
-                                    )}
-                            </select>
-                        </div> : <></>}
-                    {isPeriodoDefined() ?
-                        <div>
-                             <br/>
-                             <button onClick={() => 
-                                 history.push(`/show-cidade/${localidade}/${periodo}`)}
-                             >consultar</button>
-                        </div>: <></>
-                    }
-                </form>
-            </CenteredBlock>
-        </div>
+                </Condtional>
+                <Condtional cond={isLocalidadeDefined}>
+                    <h1>período</h1>
+                    <select
+                        name="periodo"
+                        id="periodo"
+                        required
+                        onChange={(ev) => setPeriodo(ev.target.value)}
+                        >
+                            <option selected key='' value=''>selecione um período</option>
+                            {periodos.map((cur) =>
+                                <option key={cur.code}
+                                    value={cur.code}
+                                >{cur.name}</option>
+                            )}
+                    </select>
+                </Condtional>
+                <Condtional cond={isPeriodoDefined}>
+                    <br/>
+                    <button onClick={() => 
+                        history.push(`/show-cidade/${localidade}/${periodo}`)}
+                    >consultar</button>
+                </Condtional>
+            </form>
+        </CenteredBlock>
     )
 }
 

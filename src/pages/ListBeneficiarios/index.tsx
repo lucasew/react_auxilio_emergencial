@@ -3,6 +3,9 @@ import {useParams, useHistory} from 'react-router-dom'
 import toast from '../../utils/toaster'
 import axios from 'axios'
 import CenteredBlock from '../../components/CenteredBlock'
+import Topic from '../../components/Topic'
+
+import './styles.css'
 
 interface TransparenciaApiResult {
     dataReferencia: string
@@ -54,16 +57,24 @@ const ListBeneficiarios = () => {
     setTimeout(() => {
         setDemorandoParaCarregar(true)
     }, 3000)
+
+    const currencyFormatter = new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'brl',
+    }).format
+    
     return (
         <CenteredBlock>
-            {transparencia === undefined 
-                ? <>
+            {
+                transparencia === undefined ?
                     <h1>{!demorandoParaCarregar ? "carregando..." : "eu ainda não desisti! carregando..."}</h1>
-                </>
-                : <>
+                :
+                <div>
                     <h1>{transparencia.municipio.nomeIBGE.toLowerCase()} - {transparencia.municipio.uf.sigla.toLowerCase()} (ibge {transparencia.municipio.codigoIBGE})</h1>
-                    <h2>beneficiários: {transparencia.quantidadeBeneficiados}</h2>
-                </>
+                    <Topic topicKey="beneficiários" topicValue={transparencia.quantidadeBeneficiados}/>
+                    <Topic topicKey="valor disponibilizado" topicValue={currencyFormatter(transparencia.valor)} />
+                </div>
+
             }
         </CenteredBlock>
     )
