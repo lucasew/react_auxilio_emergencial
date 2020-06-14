@@ -10,7 +10,7 @@ import Header from './components/Header'
 const Routes = () => {
     const location = new URL(window.location.href)
     let baseRoute = location.hostname.endsWith("github.io")
-        ? "/react-auxilio-emergencial"
+        ? "/react_auxilio_emergencial"
         : undefined
     return (
         <BrowserRouter basename={baseRoute}>
