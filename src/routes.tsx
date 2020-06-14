@@ -8,8 +8,12 @@ import NotFound from './pages/NotFound'
 import Header from './components/Header'
 
 const Routes = () => {
+    const location = new URL(window.location.href)
+    let baseRoute = location.hostname.endsWith("github.io")
+        ? "/react-auxilio-emergencial"
+        : undefined
     return (
-        <BrowserRouter basename="/react-auxilio-emergencial">
+        <BrowserRouter basename={baseRoute}>
             <Header/>
             <Switch>
                 <Route component={Home} path="/" exact />
