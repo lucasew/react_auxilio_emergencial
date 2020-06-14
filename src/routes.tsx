@@ -9,7 +9,7 @@ import Header from './components/Header'
 
 const Routes = () => {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename="/react_auxilio_emergencial">
             <Header/>
             <Switch>
                 <Route component={Home} path="/" exact />
