@@ -5,7 +5,7 @@ import toast from '../../utils/toaster'
 const NotFound = () => {
     let location = useLocation()
     let history = useHistory()
-    toast.error(`The path ${location.pathname} is not found. Redirecting to home...`)
+    toast.error(`O caminho '${location.pathname}' não foi encontrado. Indo para a página inicial...`)
     history.push('/')
     return <h1>{location.pathname} not found</h1>
 }

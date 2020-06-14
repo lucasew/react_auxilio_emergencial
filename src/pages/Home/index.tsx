@@ -29,7 +29,7 @@ const Home = () => {
     const [periodo, setPeriodo] = useState('')
 
     useEffect(() => {
-        axios.get<IBGEUf[]>('http://servicodados.ibge.gov.br/api/v1/localidades/estados/')
+        axios.get<IBGEUf[]>('https://servicodados.ibge.gov.br/api/v1/localidades/estados/')
             .then((res) => {
                 if (res.status === 200) {
                     setUfs(res.data.sort((a, b) => a.nome.localeCompare(b.nome)))
@@ -47,7 +47,7 @@ const Home = () => {
         if (uf === '') {
             return
         }
-        axios.get<IBGECity[]>(`http://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`)
+        axios.get<IBGECity[]>(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`)
             .then((res) => {
                 if (res.status === 200) {
                     setCities(res.data)

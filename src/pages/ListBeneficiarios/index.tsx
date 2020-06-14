@@ -33,7 +33,7 @@ const ListBeneficiarios = () => {
     const [transparencia, setTransparencia] = useState<TransparenciaApiResult>()
 
     useEffect(() => {
-        axios.get<TransparenciaApiResult[]>("http://www.transparencia.gov.br/api-de-dados/auxilio-emergencial-por-municipio", {
+        axios.get<TransparenciaApiResult[]>("https://www.transparencia.gov.br/api-de-dados/auxilio-emergencial-por-municipio", {
             params: {
                 codigoIbge: id,
                 mesAno: periodo
