@@ -5,8 +5,6 @@ import axios from 'axios'
 import CenteredBlock from '../../components/CenteredBlock'
 import Topic from '../../components/Topic'
 
-import './styles.css'
-
 interface TransparenciaApiResult {
     dataReferencia: string
     municipio: {

@@ -70,9 +70,10 @@ const Home = () => {
                     id="uf" 
                     autoFocus 
                     required
+                    defaultValue=''
                     onChange={(ev) => setUf(ev.target.value)}
                 >
-                    <option selected key='' value=''>selecione um estado</option>
+                    <option key='' value=''>selecione um estado</option>
                     {ufs.map((cur) => 
                         <option key={cur.sigla}
                             value={cur.sigla} 
@@ -85,9 +86,10 @@ const Home = () => {
                         name="city" 
                         id="city" 
                         required
+                        defaultValue={0}
                         onChange={(ev) => setLocalidade(Number(ev.target.value))}
                     >
-                        <option selected key={0} value={0}>selecione um município</option>
+                        <option key={0} value={0}>selecione um município</option>
                         {cities.map((cur) =>
                             <option key={cur.id}
                                 value={cur.id}
@@ -101,9 +103,10 @@ const Home = () => {
                         name="periodo"
                         id="periodo"
                         required
+                        defaultValue=''
                         onChange={(ev) => setPeriodo(ev.target.value)}
                         >
-                            <option selected key='' value=''>selecione um período</option>
+                            <option key='' value=''>selecione um período</option>
                             {periodos.map((cur) =>
                                 <option key={cur.code}
                                     value={cur.code}

@@ -2,7 +2,11 @@
     font-weight: bold;
 }
 
-p {
+.topicValue {
+    font-weight: normal;
+}
+
+.topic {
     font-size: larger;
     text-align: center;
 }
